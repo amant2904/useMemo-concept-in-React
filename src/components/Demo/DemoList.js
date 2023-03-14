@@ -4,12 +4,16 @@ import classes from './DemoList.module.css';
 
 const DemoList = (props) => {
   const { items } = props;
+  const { order } = props;
 
   const sortedList = useMemo(() => {
-    console.log('Items sorted');
-    return items.sort((a, b) => a - b);
-  }, [items]); 
-  console.log('DemoList RUNNING');
+    if (order === "ascending") {
+      return items.sort((a, b) => a - b);
+    }
+    else {
+      return items.sort((a, b) => b - a);
+    }
+  }, [items, order]);
 
   return (
     <div className={classes.list}>
